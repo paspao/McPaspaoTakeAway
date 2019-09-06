@@ -1,0 +1,18 @@
+server:
+  compression:
+    enabled: true
+  port: 8090
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  application:
+    name: order-service
+
+info:
+  version: @pom.version@
+  name: @pom.artifactId@
+  timestamp: @build.time@
