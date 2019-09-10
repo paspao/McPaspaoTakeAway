@@ -10,10 +10,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class Order extends OrderDTO {
 
-
     @Override
     @Id
     public String getId() {
         return super.getId();
     }
+
 }

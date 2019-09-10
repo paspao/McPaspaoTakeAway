@@ -1,5 +1,8 @@
 package org.paspao.takeaway.dto;
 
+import org.paspao.takeaway.dto.type.CookingType;
+import org.paspao.takeaway.dto.type.OrderStatusType;
+
 import java.util.List;
 
 /**
@@ -8,6 +11,12 @@ import java.util.List;
 public class OrderDTO {
 
     private String id;
+
+    private String statusDescription;
+
+    private CookingType cookingType;
+
+    private OrderStatusType orderStatus;
 
     private List<HamburgerDTO> hamburgerList;
 
@@ -44,5 +53,29 @@ public class OrderDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public OrderStatusType getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatusType orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public String getStatusDescription() {
+        return statusDescription;
+    }
+
+    public void setStatusDescription(String statusDescription) {
+        this.statusDescription = statusDescription;
+    }
+
+    public CookingType getCookingType() {
+        return cookingType;
+    }
+
+    public void setCookingType(CookingType cookingType) {
+        this.cookingType = cookingType;
     }
 }

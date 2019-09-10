@@ -1,4 +1,4 @@
-package org.paspao.takeaway.order;
+package org.paspao.takeaway.kitchen;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.dozer.DozerBeanMapper;
@@ -19,29 +19,28 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Collections;
 
 /**
- * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 06/09/19.
+ * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 10/09/19.
  */
 @EnableSwagger2
 @SpringBootApplication
-public class OrderServiceApplication {
-
+public class KitchenServiceApplication {
 
     @Autowired
     private Environment env;
 
     public static void main(String[] args) {
-        SpringApplication.run(OrderServiceApplication.class, args);
+        SpringApplication.run(KitchenServiceApplication.class, args);
     }
 
 
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).tags(
-                new Tag("OrderServices","Order Service")
+                new Tag("KitchenServices","Kitchen Service")
 
         )
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("org.paspao.takeaway.order.api"))
+                .apis(RequestHandlerSelectors.basePackage("org.paspao.takeaway.kitchen.api"))
                 .paths(PathSelectors.any())
                 .build()
                 .useDefaultResponseMessages(false)
@@ -50,11 +49,11 @@ public class OrderServiceApplication {
 
     private ApiInfo apiInfo() {
         return new ApiInfo(
-                "Order Service REST API",
+                "Kitchen Service REST API",
                 "API ",
                 env.getProperty("info.version"),
                 null,
-                new Contact("Paspaola Inc.", "https://paspaola.it", "pasquale.paola@gmail.com"),
+                new Contact("Pasapaola Inc.", "https://paspaola.it", "pasquale.paola@gmail.com"),
                 null, null, Collections.emptyList());
     }
 

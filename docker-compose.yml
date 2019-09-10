@@ -11,6 +11,26 @@ services:
     networks:
       - mcpaspao
 
+  kitchen-service:
+    image: paspaola/kitchen-service:0.0.1
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+      - kafkabroker
+    networks:
+      - mcpaspao
+
+  delivery-service:
+    image: paspaola/delivery-service:0.0.1
+    ports:
+      - 8070:8070
+    depends_on:
+      - mongodb
+      - kafkabroker
+    networks:
+      - mcpaspao
+
   mongodb:
     image: mongo:3.4.22-xenial
     ports:

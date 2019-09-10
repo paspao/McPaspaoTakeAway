@@ -1,6 +1,5 @@
 package org.paspao.takeaway.dto;
 
-import org.paspao.takeaway.dto.type.CookingType;
 import org.paspao.takeaway.dto.type.HamburgerType;
 
 /**
@@ -9,7 +8,17 @@ import org.paspao.takeaway.dto.type.HamburgerType;
 public class HamburgerDTO {
 
     private HamburgerType hamburgerType;
-    private CookingType cookingType;
+
+    private int quantity;
+
+    public HamburgerDTO(){
+
+    }
+
+    public HamburgerDTO(HamburgerType type,int quantity){
+        this.quantity=quantity;
+        this.hamburgerType=type;
+    }
 
     public HamburgerType getHamburgerType() {
         return hamburgerType;
@@ -19,11 +28,11 @@ public class HamburgerDTO {
         this.hamburgerType = hamburgerType;
     }
 
-    public CookingType getCookingType() {
-        return cookingType;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setCookingType(CookingType cookingType) {
-        this.cookingType = cookingType;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

@@ -1,7 +1,7 @@
 server:
   compression:
     enabled: true
-  port: 8090
+  port: 8080
 
 management:
   endpoints:
@@ -10,15 +10,15 @@ management:
         include: "*"
 spring:
   application:
-    name: order-service
+    name: kitchen-service
   data:
     mongodb:
       host: mongodb
-      database: orderservice
+      database: kitchenservice
   kafka:
     consumer:
       bootstrap-servers: kafkabroker:9092
-      group-id: order-service
+      group-id: kitchen-service
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer

@@ -16,7 +16,6 @@
   <modules>
     <module>order-service</module>
     <module>kitchen-service</module>
-    <module>order-history-service</module>
     <module>delivery-service</module>
       <module>mcpaspao-common</module>
   </modules>
