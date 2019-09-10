@@ -1,7 +1,11 @@
 package org.paspao.takeaway.order.entity;
 
+import org.paspao.takeaway.dto.HamburgerDTO;
+
 /**
- * Created by <a href="mailto:pasquale.paola@eng.it">Pasquale Paola</a> on 06/09/19.
+ * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 06/09/19.
  */
-public class Hamburger {
+public class Hamburger extends HamburgerDTO {
+
+
 }

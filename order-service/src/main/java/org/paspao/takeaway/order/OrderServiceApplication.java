@@ -1,5 +1,6 @@
 package org.paspao.takeaway.order;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -18,11 +19,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Collections;
 
 /**
- * Created by <a href="mailto:pasquale.paola@eng.it">Pasquale Paola</a> on 06/09/19.
+ * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 06/09/19.
  */
 @EnableSwagger2
 @SpringBootApplication
 public class OrderServiceApplication {
+
 
     @Autowired
     private Environment env;
@@ -61,6 +63,11 @@ public class OrderServiceApplication {
         DozerBeanMapper modelMapper=new DozerBeanMapper();
 
         return modelMapper;
+    }
+
+    @Bean
+    public ObjectMapper mapper(){
+        return new ObjectMapper();
     }
 
 }

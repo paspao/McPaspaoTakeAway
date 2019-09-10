@@ -1,0 +1,30 @@
+version: '3.2'
+services:
+
+  order-service:
+    image: paspaola/order-service:0.0.1
+    ports:
+      - 8090:8090
+    depends_on:
+      - mongodb
+      - kafkabroker
+    networks:
+      - mcpaspao
+
+  mongodb:
+    image: mongo:3.4.22-xenial
+    ports:
+      - 27017:27017
+    networks:
+      - mcpaspao
+
+  kafkabroker:
+    image: paspaola/kafka-mcpaspao:0.0.1
+    ports:
+      - 2181:2181
+      - 9092:9092
+    networks:
+      - mcpaspao
+
+networks:
+  mcpaspao:
