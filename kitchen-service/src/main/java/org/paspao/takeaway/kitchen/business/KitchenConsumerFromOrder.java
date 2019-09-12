@@ -2,6 +2,7 @@ package org.paspao.takeaway.kitchen.business;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.paspao.takeaway.dto.OrderDTO;
+import org.paspao.takeaway.dto.type.OrderStatusType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class KitchenConsumerFromOrder  {
 
     private final static String TOPIC="orderservicecallback";
 
+    private final static String TOPIC_DELIVERY="deliveryservice";
+
     @Autowired
     private KafkaTemplate kafkaTemplate;
 
@@ -37,10 +40,19 @@ public class KitchenConsumerFromOrder  {
             OrderDTO orderDTO=objectMapper.readValue(content, OrderDTO.class);
 
             kitchenService.process(orderDTO);
+
+            kafkaTemplate.send(TOPIC,objectMapper.writeValueAsString(orderDTO));
+            logger.info("Cooking start");
+            Thread.sleep(5000);
+            logger.info("Packaging start");
+            orderDTO.setOrderStatus(OrderStatusType.PACKAGING);
+            orderDTO.setStatusDescription("Order in packaging");
+
             kafkaTemplate.send(TOPIC,objectMapper.writeValueAsString(orderDTO));
 
+            kafkaTemplate.send(TOPIC_DELIVERY,objectMapper.writeValueAsString(orderDTO));
 
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage(),e);
         }
     }

@@ -11,11 +11,6 @@ management:
 
 
 spring:
-  cloud:
-    stream:
-      kafka:
-        binder:
-          autoCreateTopics: false
   application:
     name: order-service
   data:
