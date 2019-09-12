@@ -1,9 +1,13 @@
 package org.paspao.takeaway.kitchen.business;
 
 import org.paspao.takeaway.dto.HamburgerDTO;
+import org.paspao.takeaway.dto.OrderDTO;
 import org.paspao.takeaway.dto.type.HamburgerType;
+import org.paspao.takeaway.dto.type.OrderStatusType;
 import org.paspao.takeaway.kitchen.dao.HamburgerRepository;
 import org.paspao.takeaway.kitchen.entity.Hamburger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +21,9 @@ import java.util.Map;
  */
 @Service
 public class KitchenService {
+
+    private static final Logger logger = LoggerFactory.getLogger(KitchenService.class);
+
 
     @Autowired
     private HamburgerRepository hamburgerRepository;
@@ -48,5 +55,42 @@ public class KitchenService {
                 list.add(new HamburgerDTO(entry.getKey(),entry.getValue()));
         }
         return list;
+    }
+
+    public synchronized void process(OrderDTO orderDTO)
+    {
+
+
+        List<HamburgerDTO> hamburgerDTOList= orderDTO.getHamburgerList();
+        List<Hamburger> candidatesHamburger=new ArrayList<>();
+        for(HamburgerDTO hDto:hamburgerDTOList)
+        {
+            List<Hamburger> hamburgerList= hamburgerRepository.findByHamburgerTypeIs(hDto.getHamburgerType());
+            logger.info("List pippo "+hamburgerList.size());
+            if(hamburgerList!=null&&hamburgerList.size()>=hDto.getQuantity())
+            {
+
+                int i=0;
+                for(Hamburger hamburger:hamburgerList) {
+                    ++i;
+                    candidatesHamburger.add(hamburger);
+                    if(i==hDto.getQuantity())
+                        break;
+
+                }
+            }
+            else {
+
+                orderDTO.setOrderStatus(OrderStatusType.ABORTED);
+                orderDTO.setStatusDescription(hDto.getHamburgerType().getDescription()+" finished, only "+hamburgerList.size()+" in the fridge");
+                return;
+            }
+        }
+        orderDTO.setOrderStatus(OrderStatusType.COOKING);
+        for(Hamburger hamburger:candidatesHamburger)
+        {
+                hamburgerRepository.deleteById(hamburger.getId());
+        }
+
     }
 }

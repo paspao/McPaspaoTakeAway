@@ -9,6 +9,11 @@ management:
       exposure:
         include: "*"
 spring:
+  cloud:
+    stream:
+      kafka:
+        binder:
+          autoCreateTopics: false
   application:
     name: kitchen-service
   data:
