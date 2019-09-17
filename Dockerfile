@@ -2,7 +2,7 @@
 ARG openjdkversion=11-jre-openj9
 FROM maven:3.6-jdk-11-slim as builder
 WORKDIR /app
-COPY settings.xml /root/.m2/
+#COPY settings.xml /root/.m2/
 COPY ./delivery-service ./delivery-service
 COPY ./kitchen-service ./kitchen-service
 COPY ./mcpaspao-common ./mcpaspao-common
