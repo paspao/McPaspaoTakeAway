@@ -5,6 +5,8 @@ import org.paspao.takeaway.dto.OrderDTO;
 import org.paspao.takeaway.order.dao.OrderRepository;
 import org.paspao.takeaway.order.entity.Order;
 import org.paspao.takeaway.order.port.OrderServicePublish;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderService {
 
+    private static final Logger logger = LoggerFactory.getLogger(OrderService.class);
     @Autowired
     private OrderRepository orderRepository;
 
@@ -29,5 +32,6 @@ public class OrderService {
         dozer.map(orderDTO,order);
         order=orderRepository.save(order);
         orderServicePublish.sendOrder(order);
+        logger.info("Order with id "+order.getId()+" sent to kitchen service");
     }
 }

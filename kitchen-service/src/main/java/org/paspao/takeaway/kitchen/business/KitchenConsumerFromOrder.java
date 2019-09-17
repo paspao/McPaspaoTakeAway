@@ -20,7 +20,7 @@ public class KitchenConsumerFromOrder  {
 
     private static final Logger logger = LoggerFactory.getLogger(KitchenConsumerFromOrder.class);
 
-    private final static String TOPIC="orderservicecallback";
+    private final static String TOPIC_ORDER_CALLBACK ="orderservicecallback";
 
     private final static String TOPIC_DELIVERY="deliveryservice";
 
@@ -41,17 +41,17 @@ public class KitchenConsumerFromOrder  {
 
             kitchenService.process(orderDTO);
 
-            kafkaTemplate.send(TOPIC,objectMapper.writeValueAsString(orderDTO));
-            logger.info("Cooking start");
+            kafkaTemplate.send(TOPIC_ORDER_CALLBACK,objectMapper.writeValueAsString(orderDTO));
+            logger.info("Start cooking for order id "+orderDTO.getId()+" start");
             Thread.sleep(5000);
             logger.info("Packaging start");
             orderDTO.setOrderStatus(OrderStatusType.PACKAGING);
             orderDTO.setStatusDescription("Order in packaging");
 
-            kafkaTemplate.send(TOPIC,objectMapper.writeValueAsString(orderDTO));
-
+            kafkaTemplate.send(TOPIC_ORDER_CALLBACK,objectMapper.writeValueAsString(orderDTO));
+            logger.info("Callback to order service sent");
             kafkaTemplate.send(TOPIC_DELIVERY,objectMapper.writeValueAsString(orderDTO));
-
+            logger.info("Order id "+orderDTO.getId()+" sent to delivery");
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage(),e);
         }

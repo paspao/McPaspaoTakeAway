@@ -22,7 +22,7 @@ public class DeliveryConsumer {
 
     private final static String TOPIC_DELIVERY="deliveryservice";
 
-    private final static String TOPIC="orderservicecallback";
+    private final static String TOPIC_ORDER_CALLBACK ="orderservicecallback";
 
     private static final Logger logger = LoggerFactory.getLogger(DeliveryConsumer.class);
 
@@ -44,10 +44,12 @@ public class DeliveryConsumer {
             delivery.setAddressDTO(orderDTO.getAddressDTO());
             delivery.setOrderId(orderDTO.getId());
             deliveryRepository.save(delivery);
+            logger.info("Processing delivery id "+delivery.getId()+" for order id "+orderDTO.getId());
             Thread.sleep(5000);
             orderDTO.setOrderStatus(OrderStatusType.DELIVERED);
             orderDTO.setStatusDescription("Delivered");
-            kafkaTemplate.send(TOPIC,objectMapper.writeValueAsString(orderDTO));
+            kafkaTemplate.send(TOPIC_ORDER_CALLBACK,objectMapper.writeValueAsString(orderDTO));
+            logger.info("Delivered order id "+orderDTO.getId());
 
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage(), e);

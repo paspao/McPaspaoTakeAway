@@ -39,10 +39,12 @@ services:
       - mcpaspao
 
   kafkabroker:
-    image: paspaola/kafka-mcpaspao:0.0.1
+    image: paspaola/kafka-mcpaspao
     ports:
       - 2181:2181
       - 9092:9092
+    environment:
+      - KAFKA_ADVERTISED_LISTNERS=192.168.91.121
     networks:
       - mcpaspao
 
