@@ -3,7 +3,11 @@ ARG openjdkversion=11-jre-openj9
 FROM maven:3.6-jdk-11-slim as builder
 WORKDIR /app
 COPY settings.xml /root/.m2/
-COPY ./* ./
+COPY ./delivery-service ./delivery-service
+COPY ./kitchen-service ./kitchen-service
+COPY ./mcpaspao-common ./mcpaspao-common
+COPY ./order-service ./order-service
+COPY pom.xml ./
 RUN  --mount=type=cache,target=/root/.m2 mvn  -e  -B package
 
 
@@ -26,4 +30,9 @@ COPY --from=builder  /app/delivery-service/target/delivery-service-1.0-SNAPSHOT.
 WORKDIR /usr/delivery-service
 EXPOSE 8070
 CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-Dserver.port=8070", "-jar", "delivery-service-1.0-SNAPSHOT.jar"]
+
+FROM kong as kong-mcpaspao
+ENV KONG_DATABASE=off KONG_DECLARATIVE_CONFIG=/usr/local/kong/declarative/kong.yml KONG_PROXY_ACCESS_LOG=/dev/stdout KONG_ADMIN_ACCESS_LOG=/dev/stdout KONG_PROXY_ERROR_LOG=/dev/stderr KONG_ADMIN_ERROR_LOG=/dev/stderr KONG_ADMIN_LISTEN="0.0.0.0:8001, 0.0.0.0:8444 ssl"
+COPY kong.yml /usr/local/kong/declarative/
+EXPOSE 8000 8443 8001 8444
 

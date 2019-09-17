@@ -1,3 +1,17 @@
+# This section contains your application metadata.
+# Version of the application
+version: 0.0.1
+# Name of the application
+name: mcpaspao
+# A short description of the application
+description: 
+# List of application maintainers with name and email for each
+maintainers:
+  - name: Pasquale Paola
+    email: pasquale.paola@gmail.com
+
+---
+# This section contains the Compose file that describes your application services.
 version: '3.2'
 services:
 
@@ -44,9 +58,24 @@ services:
       - 2181:2181
       - 9092:9092
     environment:
-      - KAFKA_ADVERTISED_LISTNERS=192.168.91.121
+      - KAFKA_ADVERTISED_LISTNERS=${advertised.addr}
+    networks:
+      - mcpaspao
+
+  kong-mcpaspao:
+    image: paspaola/kong-mcpaspao:0.0.1
+    ports:
+      - 8000:8000
+      - 8443:8443
+      - 8001:8001
+      - 8444:8444
     networks:
       - mcpaspao
 
 networks:
   mcpaspao:
+
+---
+# This section contains the default values for your application parameters.
+advertised:
+ addr: 192.168.91.125

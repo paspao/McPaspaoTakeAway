@@ -1,0 +1,23 @@
+_format_version: "1.1"
+
+services:
+  - name: order-service
+    url: http://order-service:8090
+    routes:
+      - name: order-service
+        paths:
+          - /order-service
+
+  - name: kitchen-service
+    url: http://kitchen-service:8080
+    routes:
+      - name: kitchen-service
+        paths:
+          - /kitchen-service
+
+  - name: delivery-service
+    url: http://delivery-service:8070
+    routes:
+      - name: delivery-service
+        paths:
+          - /delivery-service
