@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 06/09/19.
  */
@@ -20,12 +22,19 @@ public class OrderApi implements OrderServicePort {
     private OrderService orderService;
 
     @Override
-    public void create(OrderDTO request) {
-        orderService.createOrder(request);
+    public OrderDTO create(OrderDTO request) {
+        return orderService.createOrder(request);
     }
 
     @Override
-    public OrderDTO view(Integer id) {
-        return null;
+    public OrderDTO view(String id) {
+        return orderService.getById(id);
     }
+
+    @Override
+    public List<OrderDTO> viewAll() {
+        return orderService.getAll();
+    }
+
+
 }

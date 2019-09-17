@@ -71,6 +71,10 @@ services:
       - 8444:8444
     networks:
       - mcpaspao
+    depends_on:
+      - delivery-service
+      - kitchen-service
+      - order-service
 
 networks:
   mcpaspao:

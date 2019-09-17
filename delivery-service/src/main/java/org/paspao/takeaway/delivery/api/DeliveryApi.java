@@ -1,8 +1,10 @@
 package org.paspao.takeaway.delivery.api;
 
 import io.swagger.annotations.Api;
+import org.paspao.takeaway.delivery.business.DeliveryService;
 import org.paspao.takeaway.delivery.port.IDeliveryApi;
 import org.paspao.takeaway.dto.DeliveryDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,9 +18,11 @@ import java.util.List;
 @Api(tags = "DeliveryServices")
 public class DeliveryApi implements IDeliveryApi {
 
+    @Autowired
+    private DeliveryService deliveryService;
 
     @Override
     public List<DeliveryDTO> status() {
-        return null;
+        return deliveryService.getAll();
     }
 }

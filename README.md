@@ -27,14 +27,13 @@ Example
 -------
 
 
-    http://localhost:8090/swagger-ui.html
-    
-    
+Order Services http://localhost:8090/swagger-ui.html
+Kitchen Services http://localhost:8080/swagger-ui.html
+Delivery Services http://localhost:8070/swagger-ui.html
 
-    curl -X POST "http://localhost:8080/kitchen/add?hamburgerType=KOBE&quantity=6" -H "accept: application/json"
-    curl -X POST "http://localhost:8090/order/create" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"addressDTO\": { \"number\": \"string\", \"street\": \"string\" }, \"cookingType\": \"BLOOD\", \"hamburgerList\": [ { \"hamburgerType\": \"KOBE\", \"quantity\": 2 } ], \"price\": 10}"
-    curl -X GET "http://localhost:8080/kitchen/status" -H "accept: application/json"
     
-    curl -X GET "http://localhost:8001/kitchen-service/kitchen/status" -H "accept: application/json"
-    curl -X POST "http://localhost:8001/kitchen-service/kitchen/add?hamburgerType=KOBE&quantity=6" -H "accept: application/json"
-    curl -X POST "http://localhost:8001/order-service/order/create" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"addressDTO\": { \"number\": \"string\", \"street\": \"string\" }, \"cookingType\": \"BLOOD\", \"hamburgerList\": [ { \"hamburgerType\": \"KOBE\", \"quantity\": 2 } ], \"price\": 10}"
+    curl -X POST "http://localhost:8000/kitchen-service/kitchen/add?hamburgerType=KOBE&quantity=6" -H "accept: application/json"
+    curl -X GET "http://localhost:8000/kitchen-service/kitchen/status" -H "accept: application/json"
+    curl -X POST "http://localhost:8000/order-service/order/create" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"addressDTO\": { \"number\": \"string\", \"street\": \"string\" }, \"cookingType\": \"BLOOD\", \"hamburgerList\": [ { \"hamburgerType\": \"KOBE\", \"quantity\": 2 } ], \"price\": 10}"
+    curl -X GET "http://localhost:8000/order-service/order/view" -H "accept: application/json"
+    curl -X GET "http://localhost:8000/delivery-service/delivery/status" -H "accept: application/json"
