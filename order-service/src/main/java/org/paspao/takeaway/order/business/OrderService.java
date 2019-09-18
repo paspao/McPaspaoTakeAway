@@ -4,7 +4,7 @@ import org.dozer.DozerBeanMapper;
 import org.paspao.takeaway.dto.OrderDTO;
 import org.paspao.takeaway.order.dao.OrderRepository;
 import org.paspao.takeaway.order.entity.Order;
-import org.paspao.takeaway.order.port.OrderServicePublish;
+import org.paspao.takeaway.order.port.IOrderServicePublish;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private OrderServicePublish orderServicePublish;
+    private IOrderServicePublish orderServicePublish;
 
 
     @Autowired

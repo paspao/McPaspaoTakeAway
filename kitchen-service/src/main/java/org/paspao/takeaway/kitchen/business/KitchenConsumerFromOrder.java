@@ -3,11 +3,11 @@ package org.paspao.takeaway.kitchen.business;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.paspao.takeaway.dto.OrderDTO;
 import org.paspao.takeaway.dto.type.OrderStatusType;
+import org.paspao.takeaway.kitchen.port.IKithcenPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -20,18 +20,14 @@ public class KitchenConsumerFromOrder  {
 
     private static final Logger logger = LoggerFactory.getLogger(KitchenConsumerFromOrder.class);
 
-    private final static String TOPIC_ORDER_CALLBACK ="orderservicecallback";
-
-    private final static String TOPIC_DELIVERY="deliveryservice";
-
     @Autowired
-    private KafkaTemplate kafkaTemplate;
+    private KitchenService kitchenService;
 
     @Autowired
     private ObjectMapper objectMapper;
 
     @Autowired
-    private KitchenService kitchenService;
+    private IKithcenPublisher kithcenPublisher;
 
     @KafkaListener(topics = "orderservice")
     public void consumeMessage(String content) {
@@ -41,16 +37,16 @@ public class KitchenConsumerFromOrder  {
 
             kitchenService.process(orderDTO);
 
-            kafkaTemplate.send(TOPIC_ORDER_CALLBACK,objectMapper.writeValueAsString(orderDTO));
+
             logger.info("Start cooking for order id "+orderDTO.getId()+" start");
             Thread.sleep(5000);
             logger.info("Packaging start");
             orderDTO.setOrderStatus(OrderStatusType.PACKAGING);
             orderDTO.setStatusDescription("Order in packaging");
 
-            kafkaTemplate.send(TOPIC_ORDER_CALLBACK,objectMapper.writeValueAsString(orderDTO));
+            kithcenPublisher.sendToOrderCallback(orderDTO);
             logger.info("Callback to order service sent");
-            kafkaTemplate.send(TOPIC_DELIVERY,objectMapper.writeValueAsString(orderDTO));
+            kithcenPublisher.sendToDelivery(orderDTO);
             logger.info("Order id "+orderDTO.getId()+" sent to delivery");
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage(),e);

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 06/09/19.
  */
-public interface OrderServicePort {
+public interface IOrderServiceApi {
 
     @ApiOperation(value = "Create order", response = OrderDTO.class)
     @RequestMapping(value = "create", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)

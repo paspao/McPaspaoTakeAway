@@ -21,6 +21,8 @@ public class OrderConsumer {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderConsumer.class);
 
+    private final static String TOPIC_ORDER_CALLBACK ="orderservicecallback";
+
     @Autowired
     private ObjectMapper mapper;
 
@@ -28,7 +30,7 @@ public class OrderConsumer {
     private OrderRepository orderRepository;
 
 
-    @KafkaListener(topics = "orderservicecallback")
+    @KafkaListener(topics = TOPIC_ORDER_CALLBACK)
     public void callback(String message)
     {
         try {
