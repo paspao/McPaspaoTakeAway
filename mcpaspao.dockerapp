@@ -4,7 +4,7 @@ version: 0.0.1
 # Name of the application
 name: mcpaspao
 # A short description of the application
-description: 
+description: A little example of microservices rchitecture
 # List of application maintainers with name and email for each
 maintainers:
   - name: Pasquale Paola
@@ -45,10 +45,24 @@ services:
     networks:
       - mcpaspao
 
-  mongodb:
+  mongodb-delivery:
     image: mongo:3.4.22-xenial
     ports:
       - 27017:27017
+    networks:
+      - mcpaspao
+
+  mongodb-order:
+    image: mongo:3.4.22-xenial
+    ports:
+      - 27018:27017
+    networks:
+      - mcpaspao
+
+  mongodb-kitchen:
+    image: mongo:3.4.22-xenial
+    ports:
+      - 27019:27017
     networks:
       - mcpaspao
 

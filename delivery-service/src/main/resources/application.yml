@@ -13,7 +13,7 @@ spring:
     name: delivery-service
   data:
     mongodb:
-      host: mongodb
+      host: mongodb-delivery
       database: deliveryservice
   kafka:
     consumer:

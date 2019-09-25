@@ -15,7 +15,7 @@ spring:
     name: order-service
   data:
     mongodb:
-      host: mongodb
+      host: mongodb-order
       database: orderservice
   kafka:
     consumer:

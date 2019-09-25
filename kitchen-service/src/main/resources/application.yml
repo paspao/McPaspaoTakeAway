@@ -13,7 +13,7 @@ spring:
     name: kitchen-service
   data:
     mongodb:
-      host: mongodb
+      host: mongodb-kitchen
       database: kitchenservice
   kafka:
     consumer:

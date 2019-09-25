@@ -3,11 +3,11 @@ package org.paspao.takeaway.kitchen.business;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.paspao.takeaway.dto.OrderDTO;
 import org.paspao.takeaway.dto.type.OrderStatusType;
+import org.paspao.takeaway.kitchen.port.IKitchenMessaging;
 import org.paspao.takeaway.kitchen.port.IKithcenPublisher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import java.io.IOException;
  * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 11/09/19.
  */
 @Service
-public class KitchenConsumerFromOrder  {
+public class KitchenConsumerFromOrder  implements IKitchenMessaging {
 
     private static final Logger logger = LoggerFactory.getLogger(KitchenConsumerFromOrder.class);
 
@@ -29,7 +29,7 @@ public class KitchenConsumerFromOrder  {
     @Autowired
     private IKithcenPublisher kithcenPublisher;
 
-    @KafkaListener(topics = "orderservice")
+    @Override
     public void consumeMessage(String content) {
 
         try {
