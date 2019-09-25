@@ -44,7 +44,7 @@ public class DeliveryConsumer  implements IDeliveryMessging {
             Thread.sleep(5000);
             orderDTO.setOrderStatus(OrderStatusType.DELIVERED);
             orderDTO.setStatusDescription("Delivered");
-            deliveryPublisher.sendToOrderCalbback(orderDTO);
+            deliveryPublisher.sendToOrderCallback(orderDTO);
             logger.info("Delivered order id "+orderDTO.getId());
 
         } catch (IOException | InterruptedException e) {

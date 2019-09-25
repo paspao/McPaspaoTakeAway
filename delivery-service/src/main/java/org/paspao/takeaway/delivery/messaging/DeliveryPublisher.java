@@ -24,7 +24,7 @@ public class DeliveryPublisher implements IDeliveryPublisher {
 
 
     @Override
-    public void sendToOrderCalbback(OrderDTO orderDTO) throws JsonProcessingException {
+    public void sendToOrderCallback(OrderDTO orderDTO) throws JsonProcessingException {
         kafkaTemplate.send(TOPIC_ORDER_CALLBACK,objectMapper.writeValueAsString(orderDTO));
     }
 }

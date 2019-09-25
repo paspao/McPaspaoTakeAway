@@ -8,5 +8,5 @@ import org.paspao.takeaway.dto.OrderDTO;
  */
 public interface IDeliveryPublisher {
 
-    void sendToOrderCalbback(OrderDTO orderDTO) throws JsonProcessingException;
+    void sendToOrderCallback(OrderDTO orderDTO) throws JsonProcessingException;
 }
