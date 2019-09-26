@@ -1,7 +1,8 @@
 package org.paspao.takeaway.delivery.port;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.paspao.takeaway.dto.OrderDTO;
+import org.paspao.takeaway.delivery.bean.OrderDTO;
+
 
 /**
  * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 18/09/19.

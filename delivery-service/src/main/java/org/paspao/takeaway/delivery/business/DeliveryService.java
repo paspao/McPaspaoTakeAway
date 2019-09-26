@@ -1,9 +1,9 @@
 package org.paspao.takeaway.delivery.business;
 
 import org.dozer.DozerBeanMapper;
+import org.paspao.takeaway.delivery.bean.DeliveryDTO;
 import org.paspao.takeaway.delivery.dao.DeliveryRepository;
 import org.paspao.takeaway.delivery.entity.Delivery;
-import org.paspao.takeaway.dto.DeliveryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package org.paspao.takeaway.kitchen.api;
 
 import io.swagger.annotations.Api;
-import org.paspao.takeaway.dto.HamburgerDTO;
+import org.paspao.takeaway.kitchen.bean.HamburgerDTO;
 import org.paspao.takeaway.kitchen.business.KitchenService;
 import org.paspao.takeaway.kitchen.port.IKitchenApi;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package org.paspao.takeaway.dto;
+package org.paspao.takeaway.kitchen.bean;
 
 /**
  * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 12/09/19.

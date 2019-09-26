@@ -1,6 +1,6 @@
 package org.paspao.takeaway.order.entity;
 
-import org.paspao.takeaway.dto.OrderDTO;
+import org.paspao.takeaway.order.bean.OrderDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

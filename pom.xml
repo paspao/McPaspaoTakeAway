@@ -17,7 +17,6 @@
     <module>order-service</module>
     <module>kitchen-service</module>
     <module>delivery-service</module>
-      <module>mcpaspao-common</module>
   </modules>
   <packaging>pom</packaging>
 

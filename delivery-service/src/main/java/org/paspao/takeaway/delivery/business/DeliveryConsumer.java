@@ -1,12 +1,12 @@
 package org.paspao.takeaway.delivery.business;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.paspao.takeaway.delivery.bean.OrderDTO;
+import org.paspao.takeaway.delivery.bean.type.OrderStatusType;
 import org.paspao.takeaway.delivery.dao.DeliveryRepository;
 import org.paspao.takeaway.delivery.entity.Delivery;
 import org.paspao.takeaway.delivery.port.IDeliveryMessging;
 import org.paspao.takeaway.delivery.port.IDeliveryPublisher;
-import org.paspao.takeaway.dto.OrderDTO;
-import org.paspao.takeaway.dto.type.OrderStatusType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

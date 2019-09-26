@@ -5,7 +5,6 @@ WORKDIR /app
 #COPY settings.xml /root/.m2/
 COPY ./delivery-service ./delivery-service
 COPY ./kitchen-service ./kitchen-service
-COPY ./mcpaspao-common ./mcpaspao-common
 COPY ./order-service ./order-service
 COPY pom.xml ./
 RUN  --mount=type=cache,target=/root/.m2 mvn  -e  -B package

@@ -2,7 +2,7 @@ package org.paspao.takeaway.kitchen.messaging;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.paspao.takeaway.dto.OrderDTO;
+import org.paspao.takeaway.kitchen.bean.OrderDTO;
 import org.paspao.takeaway.kitchen.port.IKithcenPublisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;

@@ -1,7 +1,7 @@
 package org.paspao.takeaway.order.business;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.paspao.takeaway.dto.OrderDTO;
+import org.paspao.takeaway.order.bean.OrderDTO;
 import org.paspao.takeaway.order.dao.OrderRepository;
 import org.paspao.takeaway.order.entity.Order;
 import org.paspao.takeaway.order.port.IOrderMessaging;

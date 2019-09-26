@@ -2,7 +2,7 @@ package org.paspao.takeaway.order.messaging;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.paspao.takeaway.dto.OrderDTO;
+import org.paspao.takeaway.order.bean.OrderDTO;
 import org.paspao.takeaway.order.port.IOrderServicePublish;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
  * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 10/09/19.
  */
 @Service
-public class IOrderServicePublisher implements IOrderServicePublish {
+public class OrderServicePublisher implements IOrderServicePublish {
 
-    private static final Logger logger = LoggerFactory.getLogger(IOrderServicePublisher.class);
+    private static final Logger logger = LoggerFactory.getLogger(OrderServicePublisher.class);
 
     @Autowired
     private KafkaTemplate kafkaTemplate;

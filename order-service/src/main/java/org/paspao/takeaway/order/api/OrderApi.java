@@ -1,13 +1,12 @@
 package org.paspao.takeaway.order.api;
 
 import io.swagger.annotations.Api;
-import org.paspao.takeaway.dto.OrderDTO;
+import org.paspao.takeaway.order.bean.OrderDTO;
 import org.paspao.takeaway.order.business.OrderService;
 import org.paspao.takeaway.order.port.IOrderServiceApi;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/order/")
 @Api(tags = "OrderServices")
-public class IOrderApi implements IOrderServiceApi {
+public class OrderApi implements IOrderServiceApi {
 
     @Autowired
     private OrderService orderService;

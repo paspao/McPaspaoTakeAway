@@ -1,6 +1,7 @@
-package org.paspao.takeaway.dto;
+package org.paspao.takeaway.kitchen.bean;
 
-import org.paspao.takeaway.dto.type.HamburgerType;
+
+import org.paspao.takeaway.kitchen.bean.type.HamburgerType;
 
 /**
  * Created by <a href="mailto:pasquale.paola@gmail.com">Pasquale Paola</a> on 09/09/19.

@@ -1,6 +1,6 @@
 package org.paspao.takeaway.kitchen.dao;
 
-import org.paspao.takeaway.dto.type.HamburgerType;
+import org.paspao.takeaway.kitchen.bean.type.HamburgerType;
 import org.paspao.takeaway.kitchen.entity.Hamburger;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

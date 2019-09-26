@@ -1,9 +1,9 @@
 package org.paspao.takeaway.kitchen.business;
 
-import org.paspao.takeaway.dto.HamburgerDTO;
-import org.paspao.takeaway.dto.OrderDTO;
-import org.paspao.takeaway.dto.type.HamburgerType;
-import org.paspao.takeaway.dto.type.OrderStatusType;
+import org.paspao.takeaway.kitchen.bean.HamburgerDTO;
+import org.paspao.takeaway.kitchen.bean.OrderDTO;
+import org.paspao.takeaway.kitchen.bean.type.HamburgerType;
+import org.paspao.takeaway.kitchen.bean.type.OrderStatusType;
 import org.paspao.takeaway.kitchen.dao.HamburgerRepository;
 import org.paspao.takeaway.kitchen.entity.Hamburger;
 import org.slf4j.Logger;

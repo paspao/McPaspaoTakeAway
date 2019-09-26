@@ -1,7 +1,8 @@
-package org.paspao.takeaway.dto;
+package org.paspao.takeaway.order.bean;
 
-import org.paspao.takeaway.dto.type.CookingType;
-import org.paspao.takeaway.dto.type.OrderStatusType;
+
+import org.paspao.takeaway.order.bean.type.CookingType;
+import org.paspao.takeaway.order.bean.type.OrderStatusType;
 
 import java.util.List;
 

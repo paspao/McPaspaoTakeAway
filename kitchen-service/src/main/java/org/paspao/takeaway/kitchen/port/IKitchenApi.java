@@ -1,7 +1,7 @@
 package org.paspao.takeaway.kitchen.port;
 
 import io.swagger.annotations.ApiOperation;
-import org.paspao.takeaway.dto.HamburgerDTO;
+import org.paspao.takeaway.kitchen.bean.HamburgerDTO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

@@ -1,7 +1,7 @@
 package org.paspao.takeaway.delivery.port;
 
 import io.swagger.annotations.ApiOperation;
-import org.paspao.takeaway.dto.DeliveryDTO;
+import org.paspao.takeaway.delivery.bean.DeliveryDTO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

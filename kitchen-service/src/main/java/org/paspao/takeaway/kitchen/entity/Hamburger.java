@@ -1,6 +1,6 @@
 package org.paspao.takeaway.kitchen.entity;
 
-import org.paspao.takeaway.dto.type.HamburgerType;
+import org.paspao.takeaway.kitchen.bean.type.HamburgerType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
