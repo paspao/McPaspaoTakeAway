@@ -1,5 +1,6 @@
 McPaspao Take Away
 ==================
+[![Build Status](https://travis-ci.org/paspao/McPaspaoTakeAway.svg?branch=master)](https://travis-ci.org/paspao/McPaspaoTakeAway)
 
 *Enable Docker 19.x experimental features*
 
