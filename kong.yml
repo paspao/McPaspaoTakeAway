@@ -21,3 +21,25 @@ services:
       - name: delivery-service
         paths:
           - /delivery-service
+
+plugins:
+  - name: request-transformer
+    service: kitchen-service
+    config:
+      add:
+        headers:
+          - x-forwarded-prefix:/kitchen-service
+
+  - name: request-transformer
+    service: order-service
+    config:
+      add:
+        headers:
+          - x-forwarded-prefix:/order-service
+
+  - name: request-transformer
+    service: delivery-service
+    config:
+      add:
+        headers:
+          - x-forwarded-prefix:/delivery-service

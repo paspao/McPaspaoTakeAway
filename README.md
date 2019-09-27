@@ -17,12 +17,12 @@ docker buildx build --target=kong-mcpaspao -t paspaola/kong-mcpaspao:0.0.1 .
 Run
 ---
 
-    docker app render mcpaspao.dockerapp| docker-compose -f - up
+    docker app render -s advertised.addr={your docker host ip} mcpaspao.dockerapp| docker-compose -f - up
     
 Stop
 ----
 
-    docker app render mcpaspao.dockerapp| docker-compose -f - down
+    docker app render -s mcpaspao.dockerapp| docker-compose -f - down
 
 Example
 -------
