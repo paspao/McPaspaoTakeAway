@@ -2,6 +2,7 @@ package org.paspao.takeaway.order.business;
 
 import org.dozer.DozerBeanMapper;
 import org.paspao.takeaway.order.bean.OrderDTO;
+import org.paspao.takeaway.order.bean.type.OrderStatusType;
 import org.paspao.takeaway.order.dao.OrderRepository;
 import org.paspao.takeaway.order.entity.Order;
 import org.paspao.takeaway.order.port.IOrderServicePublish;
@@ -34,6 +35,8 @@ public class OrderService {
     public OrderDTO createOrder(OrderDTO orderDTO){
         Order order =new Order();
         dozer.map(orderDTO,order);
+        order.setOrderStatus(OrderStatusType.WAITING);
+        order.setStatusDescription(OrderStatusType.WAITING.name());
         order=orderRepository.save(order);
         orderServicePublish.sendOrder(order);
         logger.info("Order with id "+order.getId()+" sent to kitchen service");

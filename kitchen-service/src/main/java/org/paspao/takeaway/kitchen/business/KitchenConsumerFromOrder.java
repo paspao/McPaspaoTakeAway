@@ -34,7 +34,9 @@ public class KitchenConsumerFromOrder  implements IKitchenMessaging {
 
         try {
             OrderDTO orderDTO=objectMapper.readValue(content, OrderDTO.class);
-
+            orderDTO.setOrderStatus(OrderStatusType.COOKING);
+            orderDTO.setStatusDescription("Order in cooking");
+            kithcenPublisher.sendToOrderCallback(orderDTO);
             kitchenService.process(orderDTO);
 
 
