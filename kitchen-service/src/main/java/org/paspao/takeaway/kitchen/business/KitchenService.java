@@ -57,16 +57,13 @@ public class KitchenService {
         return list;
     }
 
-    public synchronized void process(OrderDTO orderDTO)
+    public synchronized boolean process(OrderDTO orderDTO)
     {
-
-
         List<HamburgerDTO> hamburgerDTOList= orderDTO.getHamburgerList();
         List<Hamburger> candidatesHamburger=new ArrayList<>();
         for(HamburgerDTO hDto:hamburgerDTOList)
         {
             List<Hamburger> hamburgerList= hamburgerRepository.findByHamburgerTypeIs(hDto.getHamburgerType());
-            logger.info("List pippo "+hamburgerList.size());
             if(hamburgerList!=null&&hamburgerList.size()>=hDto.getQuantity())
             {
 
@@ -83,14 +80,17 @@ public class KitchenService {
 
                 orderDTO.setOrderStatus(OrderStatusType.ABORTED);
                 orderDTO.setStatusDescription(hDto.getHamburgerType().getDescription()+" finished, only "+hamburgerList.size()+" in the fridge");
-                return;
+                logger.info("Order aborted");
+                return false;
             }
         }
         orderDTO.setOrderStatus(OrderStatusType.COOKING);
+        orderDTO.setStatusDescription("Order in cooking");
         for(Hamburger hamburger:candidatesHamburger)
         {
                 hamburgerRepository.deleteById(hamburger.getId());
         }
 
+        return true;
     }
 }

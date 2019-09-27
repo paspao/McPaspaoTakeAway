@@ -34,22 +34,22 @@ public class KitchenConsumerFromOrder  implements IKitchenMessaging {
 
         try {
             OrderDTO orderDTO=objectMapper.readValue(content, OrderDTO.class);
-            orderDTO.setOrderStatus(OrderStatusType.COOKING);
-            orderDTO.setStatusDescription("Order in cooking");
+
+            boolean started=kitchenService.process(orderDTO);
             kithcenPublisher.sendToOrderCallback(orderDTO);
-            kitchenService.process(orderDTO);
 
+            if(started) {
+                logger.info("Start cooking for order id "+orderDTO.getId()+" start");
+                Thread.sleep(5000);
+                logger.info("Packaging start");
+                orderDTO.setOrderStatus(OrderStatusType.PACKAGING);
+                orderDTO.setStatusDescription("Order in packaging");
 
-            logger.info("Start cooking for order id "+orderDTO.getId()+" start");
-            Thread.sleep(5000);
-            logger.info("Packaging start");
-            orderDTO.setOrderStatus(OrderStatusType.PACKAGING);
-            orderDTO.setStatusDescription("Order in packaging");
-
-            kithcenPublisher.sendToOrderCallback(orderDTO);
-            logger.info("Callback to order service sent");
-            kithcenPublisher.sendToDelivery(orderDTO);
-            logger.info("Order id "+orderDTO.getId()+" sent to delivery");
+                kithcenPublisher.sendToOrderCallback(orderDTO);
+                logger.info("Callback to order service sent");
+                kithcenPublisher.sendToDelivery(orderDTO);
+                logger.info("Order id "+orderDTO.getId()+" sent to delivery");
+            }
         } catch (IOException | InterruptedException e) {
             logger.error(e.getMessage(),e);
         }
