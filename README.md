@@ -8,21 +8,21 @@ Build
 -----
 
 ```bash
-docker buildx build --target=order-service -t paspaola/order-service:0.0.1 . &&\
-docker buildx build --target=kitchen-service -t paspaola/kitchen-service:0.0.1 . &&\
-docker buildx build --target=delivery-service -t paspaola/delivery-service:0.0.1 . &&\
-docker buildx build --target=kong-mcpaspao -t paspaola/kong-mcpaspao:0.0.1 .
+docker buildx build --target=order-service -t paspaola/order-service:0.0.1 --load . &&\
+docker buildx build --target=kitchen-service -t paspaola/kitchen-service:0.0.1 --load . &&\
+docker buildx build --target=delivery-service -t paspaola/delivery-service:0.0.1 --load . &&\
+docker buildx build --target=kong-mcpaspao -t paspaola/kong-mcpaspao:0.0.1 --load . 
 ```
 
 Run
 ---
 
-    docker app render -s advertised.addr={your docker host ip} mcpaspao.dockerapp| docker-compose -f - up
+    docker app render -s advertised.addr="your docker host ip" mcpaspao.dockerapp| docker-compose -f - up
     
 Stop
 ----
 
-    docker app render -s mcpaspao.dockerapp| docker-compose -f - down
+    docker app render mcpaspao.dockerapp| docker-compose -f - down
 
 Example
 -------

@@ -7,7 +7,7 @@ COPY ./delivery-service ./delivery-service
 COPY ./kitchen-service ./kitchen-service
 COPY ./order-service ./order-service
 COPY pom.xml ./
-RUN  --mount=type=cache,target=/root/.m2 mvn  -e  -B package
+RUN  --mount=type=cache,target=/root/.m2/ mvn  -e  -B package
 
 
 FROM adoptopenjdk:$openjdkversion as order-service
